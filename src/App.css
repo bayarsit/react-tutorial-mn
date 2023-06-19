@@ -13,9 +13,10 @@
   }
 }
 
-.App-header {
+.App-container, .App-body, .App-header, .App-footer  {
   background-color: #282c34;
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +25,68 @@
   color: white;
 }
 
+.App-container {
+  justify-content:space-between;
+}
+
+.App-body {
+  width: 100%;
+  min-height: 75vh;
+}
+
+.App-lesson {
+  width: 100%;
+  min-height: 75vh;
+}
+
+.App-header {
+  background-color: #11151d;
+  color: rgb(173, 219, 221);
+  min-height: 15vh;
+}
+
+.App-footer {
+  background-color: #11151d;
+  color: rgb(213, 173, 221);
+  min-height: 10vh;
+}
+
+.App-sidebar, .App-sidebar-hidden {
+  background-color: #11151d;
+  color: rgb(221, 188, 173);
+  min-height: 100%;
+  width: 20vw;
+  text-align: left;
+}
+
+.App-sidebar-hidden {
+  color: rgb(92, 92, 92);
+  width: 2vw;
+}
+
+.App-sidebarItem {
+  font-size: calc(18px);
+  color: rgb(84, 219, 179);
+  padding: 5px;
+}
+
 .App-link {
   color: #61dafb;
+}
+
+.Button {
+  font-size: calc(10px + 2vmin);
+}
+
+.Comp-container {
+  border-radius: 10px;
+  margin: 10px;  
+  padding: 10px;  
+}
+
+div {
+  border-right: lightblue 1px dashed;
+  border-bottom: lightblue 1px dashed;
 }
 
 @keyframes App-logo-spin {
