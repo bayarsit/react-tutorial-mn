@@ -24,6 +24,11 @@ function MySidebar() {
           link="/season1/episode2"
           isHidden={isHidden}
         />
+        <MySidebarItem
+          item="S1: Ep3 State and Lifecycle Methods"
+          link="/season1/episode3"
+          isHidden={isHidden}
+        />
       </div>
     </div>
   );
