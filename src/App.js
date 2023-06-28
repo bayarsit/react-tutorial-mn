@@ -9,6 +9,7 @@ import { Home } from "./Pages/Home/Home";
 import { Episode1 } from "./Pages/Season1/Episode1";
 import { Episode2 } from "./Pages/Season1/Episode2";
 import { Episode3 } from "./Pages/Season1/Episode3";
+import { Episode4 } from "./Pages/Season1/Episode4";
 
 let total = 0;
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/season1/episode1" element={<Episode1 />}></Route>
               <Route path="/season1/episode2" element={<Episode2 />}></Route>
               <Route path="/season1/episode3" element={<Episode3 />}></Route>
+              <Route path="/season1/episode4" element={<Episode4 />}></Route>
             </Routes>
           </div>
           {/* <MySidebar /> */}
