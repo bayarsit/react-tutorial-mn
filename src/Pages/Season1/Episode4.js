@@ -13,9 +13,9 @@ export const Episode4 = () => {
   return (
     <div className="App-lesson">
       <div>
-        <h3>Season 1, Episode 3: Handling Events in React</h3>
+        <h3>Season 1, Episode 4: Handling Events in React</h3>
       </div>
-      <p>Types of component: </p>
+      <p> Drag Mushroom to Mario: </p>
 
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <div>
