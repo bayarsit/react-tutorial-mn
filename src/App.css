@@ -93,6 +93,25 @@ div {
   border-bottom: lightblue 1px dashed;
 }
 
+.no-border {
+  border: none;
+}
+
+.game-scene {
+  border-radius: 20px;
+  position: relative;
+  background-color: black;
+  display: flex;
+  width: 90%;
+  height: 500px; 
+  justify-content: center;
+  align-items: end;
+}
+
+.player-mario {
+  position: absolute;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
