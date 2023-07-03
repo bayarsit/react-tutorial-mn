@@ -60,9 +60,9 @@ export const EpisodeScene = () => {
           </div>
         </div>
         {/* scene sounds */}
-        {/* <audio id="sceneMusic" autoPlay loop controls>
+        <audio id="sceneMusic" autoPlay loop controls>
           <source src="/sounds/overworld.wav" type="audio/wav" />
-        </audio> */}
+        </audio>
       </div>
 
       {/* game items */}

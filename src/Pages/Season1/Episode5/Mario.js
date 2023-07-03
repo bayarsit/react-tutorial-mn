@@ -258,15 +258,19 @@ export const Mario = (props) => {
       // Cleanup function
       // Code to run when the component unmounts or when the userName prop changes again
     };
-  }, []); //  to check isWaiting, should listen every update
+  }, [counter, isMoving, isJumping, x, y, jumpGravity, jumpVelocity]); //
 
   //   hook for rebinding of document events
   useEffect(() => {
+    // binding onkey down to main page
+    document.onkeydown = _onKeyDown;
+    document.onkeyup = _onKeyUp;
+
     return () => {
       // Cleanup function
       // Code to run when the component unmounts or when the userName prop changes again
     };
-  }, []); //  to check isWaiting, should listen every update
+  }, [isWaiting, isMoving, walkSpeed]); //  to check isWaiting, should listen every update
 
   return (
     <>
