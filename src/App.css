@@ -112,6 +112,16 @@ div {
   position: absolute;
 }
 
+.game-item {
+  position: absolute;
+}
+
+.collision-box {
+  position: absolute;
+  border: none;
+  /* border: 2px green dashed; */
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export const Mario = (props) => {
   const constSpeed = 0.005;
-  const { scene } = props;
+  const { scene, score, updateScore, live, updateLive } = props;
   const [direction, setDirection] = useState("right");
   const [movement, setMovement] = useState("mario_standing");
   let [x, setX] = useState(scene.width / 2); //  centering
@@ -10,15 +10,28 @@ export const Mario = (props) => {
   const [isWaiting, setIsWaiting] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
   let [walkSpeed, setWalkSpeed] = useState(0.05);
-  const [scale, setScale] = useState(0.25);
+  const [scale, setScale] = useState(0.1);
   let [counter, setCounter] = useState(0);
   const [isJumping, setIsJumping] = useState(false);
   let [jumpVelocity, setJumpVelocity] = useState(0);
   let [jumpGravity, setJumpGravity] = useState(0);
+  const [isCollided, setIsCollided] = useState(false);
+  const [isDied, setIsDied] = useState(false);
 
   let constJumpVelocity = 0.34;
   let constGravity = 0.0002;
 
+  //   getting width
+  function getWidth(imgName) {
+    let origWidth = 500;
+    if (imgName == "mario_punch") {
+      origWidth = 1200;
+    }
+
+    return origWidth * scale;
+  }
+
+  //   getting height
   function getHeight(imgName) {
     let origHeight = 500;
     if (imgName == "mario_punch") {
@@ -39,6 +52,7 @@ export const Mario = (props) => {
     return diffXY;
   }
 
+  //   mario's movement and jumping
   function move() {
     //  resetting walkSpeed
     if (!isMoving && !isJumping) {
@@ -74,6 +88,50 @@ export const Mario = (props) => {
 
     // Check if the player is jumping
     if (isJumping) {
+      // checking for collision with item
+      if (!isCollided) {
+        // check collision with coin
+        if (
+          isCollideWith(
+            { x: x, y: y, width: getWidth(), height: getHeight() },
+            scene.coin
+          )
+        ) {
+          updateScore(score + 1);
+          setIsCollided(true);
+          // playing groving up sound
+          document.getElementById("marioCoinUp").play();
+        }
+        // check collision with mushroom - getting big
+        if (
+          isCollideWith(
+            { x: x, y: y, width: getWidth(), height: getHeight() },
+            scene.mushroom
+          )
+        ) {
+          // becoming bigger
+          setScale(scale * 1.25);
+          updateLive(live + 1);
+          setIsCollided(true);
+          // playing groving up sound
+          document.getElementById("marioGroveUp").play();
+        }
+        // check collision with mushroom - getting small
+        if (
+          isCollideWith(
+            { x: x, y: y, width: getWidth(), height: getHeight() },
+            scene.enemy
+          )
+        ) {
+          // becoming smaller
+          setScale(scale * 0.8);
+          updateLive(live - 1);
+          setIsCollided(true);
+          // playing shrinking sound
+          document.getElementById("marioShrink").play();
+        }
+      }
+
       // Update vertical position
       y -= jumpVelocity;
       jumpVelocity -= jumpGravity;
@@ -84,8 +142,12 @@ export const Mario = (props) => {
         y = scene.floor;
 
         setIsJumping(false);
+        setIsCollided(false);
         jumpVelocity = 0;
         setMovement("mario_standing");
+        if (live <= 0) {
+          setIsDied(true);
+        }
       }
 
       setJumpVelocity(jumpVelocity);
@@ -171,6 +233,16 @@ export const Mario = (props) => {
     }
   };
 
+  //  checking for collision
+  function isCollideWith(a, b) {
+    return !(
+      a.y + a.height < b.y ||
+      a.y > b.y + b.height ||
+      a.x + a.width < b.x ||
+      a.x > b.x + b.width
+    );
+  }
+
   //   hook for movement
   useEffect(() => {
     if (isMoving || isJumping) {
@@ -183,6 +255,7 @@ export const Mario = (props) => {
     };
   }, [counter, isMoving, isJumping, x, y, jumpGravity, jumpVelocity]); //  to check isWaiting, should listen every update
 
+  //   hook for rebinding of document events
   useEffect(() => {
     // binding onkey down to main page
     document.onkeydown = _onKeyDown;
@@ -195,25 +268,46 @@ export const Mario = (props) => {
   }, [isWaiting, isMoving, walkSpeed]); //  to check isWaiting, should listen every update
 
   return (
-    <div
-      className="no-border player-mario"
-      style={{
-        left: x + getDiffY(movement).x,
-        top: y + getDiffY(movement).y - getHeight(),
-      }}
-    >
-      {/* mario image */}
-      <img
-        height={getHeight(movement)}
-        src={`/images/animated/${movement}_${direction}.gif`}
-      />
-      {/* mario sound */}
-      <audio id="marioJump">
-        <source src="/sounds/jump.wav" type="audio/wav" />
-      </audio>
-      <audio id="marioPunch">
-        <source src="/sounds/shrink.wav" type="audio/wav" />
-      </audio>
-    </div>
+    <>
+      {/* collision box */}
+      <div
+        className="collision-box"
+        style={{
+          left: x + getDiffY(movement).x + getWidth() / 7,
+          top: y + getDiffY(movement).y - getHeight(),
+          width: getWidth() / 1.5,
+          height: getHeight(),
+        }}
+      ></div>
+      {/* mario container */}
+      <div
+        className="no-border player-mario"
+        style={{
+          left: x + getDiffY(movement).x,
+          top: y + getDiffY(movement).y - getHeight(),
+        }}
+      >
+        {/* mario image */}
+        <img
+          height={getHeight(movement)}
+          src={`/images/animated/${
+            isDied ? "mario_lose" : movement
+          }_${direction}.gif`}
+        />
+        {/* mario sound */}
+        <audio id="marioJump">
+          <source src="/sounds/jump.wav" type="audio/wav" />
+        </audio>
+        <audio id="marioCoinUp">
+          <source src="/sounds/coin.wav" type="audio/wav" />
+        </audio>
+        <audio id="marioGroveUp">
+          <source src="/sounds/mushroomeat.wav" type="audio/wav" />
+        </audio>
+        <audio id="marioShrink">
+          <source src="/sounds/shrink.wav" type="audio/wav" />
+        </audio>
+      </div>
+    </>
   );
 };
