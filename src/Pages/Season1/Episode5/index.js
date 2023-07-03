@@ -12,7 +12,7 @@ export const EpisodeScene = () => {
     enemy: { x: 850, y: 100, width: 100, height: 100, img: "enemy" },
   };
   const [score, setScore] = useState(0);
-  const [live, setLive] = useState(-1);
+  const [live, setLive] = useState(1);
 
   useEffect(() => {
     document
@@ -22,7 +22,7 @@ export const EpisodeScene = () => {
         document.addEventListener(
           "click",
           () => {
-            // document.getElementById("sceneMusic").play();
+            document.getElementById("sceneMusic").play();
           },
           { once: true }
         );

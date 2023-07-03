@@ -99,7 +99,7 @@ export const Mario = (props) => {
         ) {
           updateScore(score + 1);
           setIsCollided(true);
-          // playing groving up sound
+          // playing coin up sound
           document.getElementById("marioCoinUp").play();
         }
         // check collision with mushroom - getting big
@@ -127,8 +127,13 @@ export const Mario = (props) => {
           setScale(scale * 0.8);
           updateLive(live - 1);
           setIsCollided(true);
-          // playing shrinking sound
-          document.getElementById("marioShrink").play();
+          if (live <= 1) {
+            // playing losing sound
+            document.getElementById("marioLose").play();
+          } else {
+            // playing shrinking sound
+            document.getElementById("marioShrink").play();
+          }
         }
       }
 
@@ -306,6 +311,9 @@ export const Mario = (props) => {
         </audio>
         <audio id="marioShrink">
           <source src="/sounds/shrink.wav" type="audio/wav" />
+        </audio>
+        <audio id="marioLose">
+          <source src="/sounds/lose.wav" type="audio/wav" />
         </audio>
       </div>
     </>
