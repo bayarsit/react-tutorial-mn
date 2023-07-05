@@ -39,6 +39,11 @@ function MySidebar() {
           link="/season1/episode5"
           isHidden={isHidden}
         />
+        <MySidebarItem
+          item="S1: Exam"
+          link="/season1/exam"
+          isHidden={isHidden}
+        />
       </div>
     </div>
   );
