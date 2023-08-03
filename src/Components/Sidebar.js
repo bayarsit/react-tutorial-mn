@@ -44,6 +44,13 @@ function MySidebar() {
           link="/season1/exam"
           isHidden={isHidden}
         />
+        <hr style={{ borderColor: "orange" }} />
+        <MySidebarItem
+          item="S2:Ep1 React Fundamentals and Hooks"
+          link="/season2/episode1"
+          addClass="s2"
+          isHidden={isHidden}
+        />
       </div>
     </div>
   );

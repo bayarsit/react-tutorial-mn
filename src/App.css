@@ -64,10 +64,14 @@
   width: 2vw;
 }
 
-.App-sidebarItem {
+.App-sidebarItem, .App-sidebarItem s2 {
   font-size: calc(18px);
   color: rgb(84, 219, 179);
   padding: 5px;
+}
+
+.s2 {
+  color: rgb(84, 192, 219);
 }
 
 .App-link {
