@@ -3,13 +3,13 @@ import { UserContext } from "./S2E1UserContext";
 
 function S2E1Comp2Reducer() {
   // using useState
-  const { user, setUser } = useContext(UserContext);
+  const { user1: user, setUser1: setUser } = useContext(UserContext);
   const [imgName, setImgName] = useState(
     user.name == "Mario" ? "Mario_40" : user.name
   );
 
   //   using reducer
-  const [state, dispatch] = useReducer(reducer, user);
+  const [state, dispatchUser] = useReducer(reducer, user);
 
   function reducer(state, action) {
     // just for fun, change image if age is changed
@@ -36,11 +36,11 @@ function S2E1Comp2Reducer() {
   }
 
   const increaseAge = () => {
-    dispatch({ type: "increment" });
+    dispatchUser({ type: "increment" });
   };
 
   const decreaseAge = () => {
-    dispatch({ type: "decrement" });
+    dispatchUser({ type: "decrement" });
   };
 
   return (
