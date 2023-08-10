@@ -1,6 +1,5 @@
 import { useState } from "react";
 import MySidebarItem from "./SidebarItem";
-import ClassComp from "../Pages/Season1/ClassComp";
 
 function MySidebar() {
   const [isHidden, setIsHidden] = useState(false);
@@ -48,6 +47,12 @@ function MySidebar() {
         <MySidebarItem
           item="S2:Ep1 React Fundamentals and Hooks"
           link="/season2/episode1"
+          addClass="s2"
+          isHidden={isHidden}
+        />
+        <MySidebarItem
+          item="S2:Ep2 Redux Fundamentals"
+          link="/season2/episode2"
           addClass="s2"
           isHidden={isHidden}
         />

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useReducer, useState } from "react";
-import { UserContext } from "./S2E1UserContext";
+import { UserContext } from "./S2E1-UserContext";
 
 function S2E1Comp2Reducer() {
   // using useState

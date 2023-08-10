@@ -1,5 +1,5 @@
-import FunctionalComp from "./FunctionalComp";
-import ClassComp from "./ClassComp";
+import FunctionalComp from "./ep2/FunctionalComp";
+import ClassComp from "./ep2/ClassComp";
 
 export const Episode2 = () => {
   function onClick1() {

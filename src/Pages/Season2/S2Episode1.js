@@ -1,6 +1,6 @@
-import S2E1Comp2Reducer from "./S2E1-Comp2Reducer";
-import S2E1Comp1 from "./S2E1Comp1";
-import { UserContextProvider } from "./S2E1UserContext";
+import S2E1Comp2Reducer from "./ep1/S2E1-Comp2Reducer";
+import S2E1Comp1 from "./ep1/S2E1-Comp1";
+import { UserContextProvider } from "./ep1/S2E1-UserContext";
 
 export const S2Episode1 = () => {
   return (

@@ -1,10 +1,4 @@
-import FunctionalComp from "./FunctionalComp";
-import ClassComp from "./ClassComp";
-import FunctionalComp3 from "./FunctionalComp3";
-import ClassComp3 from "./ClassComp3";
-import FunctionalComp4 from "./FunctionalComp4";
-import ClassComp4 from "./ClassComp4";
-import { EpisodeScene } from "./Episode5/";
+import { EpisodeScene } from "./ep5";
 
 export const Episode5 = () => {
   function onClick1() {

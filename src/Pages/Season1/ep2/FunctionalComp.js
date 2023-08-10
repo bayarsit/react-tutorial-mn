@@ -1,6 +1,3 @@
-import PropTypes from "prop-types";
-import ClassComp from "./ClassComp";
-
 function FunctionalComp(props) {
   return (
     <div className="Comp-container" style={{ backgroundColor: "darkgreen" }}>
@@ -17,19 +14,5 @@ function FunctionalComp(props) {
     </div>
   );
 }
-
-// export const FunctionalComp = () => (  //  need to call by exact name
-//   <div className="App-header">const header: Let's learn React</div>
-// );
-
-// FunctionalComp.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   age: PropTypes.number.isRequired,
-// };
-
-// FunctionalComp.defaultProps = {
-//   name: "Mario",
-//   age: 40,
-// };
 
 export default FunctionalComp; //  give a chance to call it by any name
