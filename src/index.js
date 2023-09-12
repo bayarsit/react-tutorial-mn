@@ -6,13 +6,14 @@ import store from "./redux/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
+import { ApiProvider } from "@reduxjs/toolkit/query/react";
+import { api } from "./redux/apiSlice";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* using provider */}
-      <Provider store={store}>
+      <Provider store={store} api={api}>
         <App />
       </Provider>
     </BrowserRouter>

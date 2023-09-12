@@ -56,6 +56,12 @@ function MySidebar() {
           addClass="s2"
           isHidden={isHidden}
         />
+        <MySidebarItem
+          item="S2:Ep3 Data Fetching with RTK-Query"
+          link="/season2/episode3"
+          addClass="s2"
+          isHidden={isHidden}
+        />
       </div>
     </div>
   );
