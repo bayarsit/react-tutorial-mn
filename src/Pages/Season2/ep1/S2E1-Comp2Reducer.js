@@ -11,9 +11,8 @@ function S2E1Comp2Reducer() {
   //   using reducer
   const [state, dispatchUser] = useReducer(reducer, user);
 
-  function reducer(state, action) {
-    // just for fun, change image if age is changed
-    if (state.name == "Mario") {
+  useEffect(() => {
+    if (state.name === "Mario") {
       if (state.age > 50) {
         setImgName(state.name + "_60");
       } else if (state.age < 30) {
@@ -22,14 +21,18 @@ function S2E1Comp2Reducer() {
         setImgName(state.name + "_40");
       }
     }
+    // If user is not Mario, set a default or other image logic if needed
+    // For now, if not Mario, it will keep the image set by useState initially or previous state
+  }, [state.age, state.name]); // Dependencies for the effect
 
+  function reducer(state, action) {
     switch (action.type) {
       case "increment":
         setUser({ ...user, age: user.age + 1 }); //  on context
         return { ...state, age: state.age + 1 };
       case "decrement":
         setUser({ ...user, age: user.age - 1 }); //  on context
-        return { ...state, age: state.age + 1 };
+        return { ...state, age: state.age - 1 };
       default:
         return state;
     }
